@@ -27,6 +27,7 @@ export default function ContactUs() {
       icon: <FaMapMarkerAlt />,
       title: "Location",
       value: "Jakarta, Indonesia",
+      link: "https://maps.app.goo.gl/CGKCXfG53ZzCHrWi7",
       bgColor: "bg-red-50",
       iconColor: "text-red-500"
     },

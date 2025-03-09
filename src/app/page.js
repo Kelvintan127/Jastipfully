@@ -7,6 +7,8 @@ import CaraOrder from "./components/caraOrder";
 import Prosedur from "./components/prosedur";
 import WhyUs from "./components/whyUs";
 import ContactUs from "./components/contactUs";
+import Ketentuan from "./components/ketentuan";
+import Footer from "./components/footer";
 
 export default function Home() {
   return (
@@ -22,8 +24,10 @@ export default function Home() {
         <AboutUs />
         <CaraOrder />
         <Prosedur />
+        <Ketentuan />
         <WhyUs />
         <ContactUs />
+        <Footer />
       </div>
     </main>
   );

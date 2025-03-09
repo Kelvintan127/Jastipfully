@@ -27,7 +27,7 @@ export default function Navbar() {
             alt="Jastipfully Logo" 
             className="w-14 h-14 rounded-full object-cover"
           />
-          <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-400 text-transparent bg-clip-text">
+          <span className="text-2xl font-bold bg-gradient-to-r from-orange-600 to-orange-400 text-transparent bg-clip-text hidden md:flex">
             JASTIPFULLY
           </span>
         </motion.div>
