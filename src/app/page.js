@@ -9,6 +9,7 @@ import WhyUs from "./components/whyUs";
 import ContactUs from "./components/contactUs";
 import Ketentuan from "./components/ketentuan";
 import Footer from "./components/footer";
+import ShippingRates from "./components/shippingRates";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         <CaraOrder />
         <Prosedur />
         <Ketentuan />
+        <ShippingRates />
         <WhyUs />
         <ContactUs />
         <Footer />

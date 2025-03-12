@@ -1,4 +1,4 @@
-import { FaMapMarkerAlt, FaWhatsapp, FaEnvelope, FaFacebook, FaTwitter, FaInstagram } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaWhatsapp, FaEnvelope, FaFacebook, FaTwitter, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -7,8 +7,34 @@ export default function Footer() {
   const navigation = [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '#about' },
-    { name: 'Services', href: '#services' },
     { name: 'Contact', href: '#contact' },
+  ];
+
+  const contactInfo = [
+    {
+      icon: FaMapMarkerAlt,
+      text: 'APR C/3A Batam, Indonesia',
+      href: 'https://maps.app.goo.gl/dHVoVD9ayji7xNBi7',
+      external: true,
+    },
+    {
+      icon: FaWhatsapp,
+      text: '+62 822-9900-5151',
+      href: 'https://wa.me/+6282299005151?text=Hello,%20Jastipfully!',
+      external: true,
+    },
+    {
+      icon: FaEnvelope,
+      text: 'jastipfully2020@gmail.com',
+      href: 'mailto:jastipfully2020@gmail.com',
+      external: false,
+    },
+  ];
+
+  const socialMedia = [
+    { Icon: FaFacebook, href: 'https://www.facebook.com/share/1TC1Ma2bfe/?mibextid=wwXIfr', external: true },
+    { Icon: FaTiktok, href: 'https://www.tiktok.com/@jastipfully?_t=ZS-8uYqaq2KyLA&_r=1', external: true },
+    { Icon: FaInstagram, href: 'https://www.instagram.com/jastipfully?igsh=b3cwOW5qMzd5NzZ4', external: true }
   ];
 
   return (
@@ -35,7 +61,7 @@ export default function Footer() {
               </span>
             </div>
             <p className="text-gray-400 leading-relaxed">
-              Jastipfully adalah layanan jasa titip terpercaya yang menghubungkan Anda dengan produk-produk berkualitas dari China.
+            Jastipfully adalah jasa titip barang impor yang beroperasi sejak November 2020, menghubungkan pelanggan di Indonesia dengan produk berkualitas dari China, Singapura, dan Malaysia.
             </p>
           </motion.div>
 
@@ -50,44 +76,23 @@ export default function Footer() {
               Contact Us
             </h2>
             <div className="space-y-4">
-              <motion.a 
-                href="https://maps.google.com"
-                className="flex items-center gap-4 group hover:bg-gray-800/50 p-3 rounded-xl transition-all"
-                whileHover={{ x: 5 }}
-              >
-                <div className="w-10 h-10 bg-orange-400/10 rounded-lg flex items-center justify-center group-hover:bg-orange-400/20 transition-colors">
-                  <FaMapMarkerAlt className="text-orange-400 text-xl" />
-                </div>
-                <p className="text-gray-300 group-hover:text-white transition-colors">
-                  Jakarta, Indonesia
-                </p>
-              </motion.a>
-              
-              <motion.a 
-                href="https://wa.me/+6281234567890"
-                className="flex items-center gap-4 group hover:bg-gray-800/50 p-3 rounded-xl transition-all"
-                whileHover={{ x: 5 }}
-              >
-                <div className="w-10 h-10 bg-orange-400/10 rounded-lg flex items-center justify-center group-hover:bg-orange-400/20 transition-colors">
-                  <FaWhatsapp className="text-orange-400 text-xl" />
-                </div>
-                <p className="text-gray-300 group-hover:text-white transition-colors">
-                  +62 812-3456-7890
-                </p>
-              </motion.a>
-
-              <motion.a 
-                href="mailto:jastipfully@gmail.com"
-                className="flex items-center gap-4 group hover:bg-gray-800/50 p-3 rounded-xl transition-all"
-                whileHover={{ x: 5 }}
-              >
-                <div className="w-10 h-10 bg-orange-400/10 rounded-lg flex items-center justify-center group-hover:bg-orange-400/20 transition-colors">
-                  <FaEnvelope className="text-orange-400 text-xl" />
-                </div>
-                <p className="text-gray-300 group-hover:text-white transition-colors">
-                  jastipfully@gmail.com
-                </p>
-              </motion.a>
+              {contactInfo.map(({ icon: Icon, text, href, external }) => (
+                <motion.a 
+                  key={text}
+                  href={href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
+                  className="flex items-center gap-4 group hover:bg-gray-800/50 p-3 rounded-xl transition-all"
+                  whileHover={{ x: 5 }}
+                >
+                  <div className="w-10 h-10 bg-orange-400/10 rounded-lg flex items-center justify-center group-hover:bg-orange-400/20 transition-colors">
+                    <Icon className="text-orange-400 text-xl" />
+                  </div>
+                  <p className="text-gray-300 group-hover:text-white transition-colors">
+                    {text}
+                  </p>
+                </motion.a>
+              ))}
             </div>
           </motion.div>
 
@@ -129,14 +134,12 @@ export default function Footer() {
               Follow Us
             </h2>
             <div className="flex gap-4">
-              {[
-                { Icon: FaFacebook, href: '#' },
-                { Icon: FaTwitter, href: '#' },
-                { Icon: FaInstagram, href: '#' }
-              ].map(({ Icon, href }, index) => (
+              {socialMedia.map(({ Icon, href, external }, index) => (
                 <motion.a
                   key={index}
                   href={href}
+                  target={external ? "_blank" : undefined}
+                  rel={external ? "noopener noreferrer" : undefined}
                   className="w-12 h-12 bg-orange-400/10 rounded-xl flex items-center justify-center hover:bg-orange-400/20 transition-colors group"
                   whileHover={{ y: -5 }}
                 >
@@ -154,7 +157,7 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <p className="text-gray-400">
-            © 2025 Jastipfully. All rights reserved.
+            © {new Date().getFullYear()} Jastipfully. All rights reserved.
           </p>
         </motion.div>
       </div>

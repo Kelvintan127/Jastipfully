@@ -10,34 +10,34 @@ export default function ContactUs() {
     {
       icon: <FaWhatsapp />,
       title: "WhatsApp",
-      value: "+62 812-3456-7890",
-      link: "https://wa.me/+6281234567890",
+      value: "+62 822-9900-5151",
+      link: "https://wa.me/+6282299005151?text=Hello,%20Jastipfully!",
       bgColor: "bg-green-50",
       iconColor: "text-green-500"
     },
     {
       icon: <FaEnvelope />,
       title: "Email",
-      value: "jastipfully@gmail.com",
-      link: "mailto:jastipfully@gmail.com",
+      value: "jastipfully2020@gmail.com",
+      link: "mailto:jastipfully2020@gmail.com",
       bgColor: "bg-orange-50",
       iconColor: "text-orange-500"
     },
     {
       icon: <FaMapMarkerAlt />,
       title: "Location",
-      value: "Jakarta, Indonesia",
-      link: "https://maps.app.goo.gl/CGKCXfG53ZzCHrWi7",
+      value: "APR C/3A Batam, Indonesia",
+      link: "https://maps.app.goo.gl/dHVoVD9ayji7xNBi7",
       bgColor: "bg-red-50",
       iconColor: "text-red-500"
     },
-    {
-      icon: <FaClock />,
-      title: "Business Hours",
-      value: "09:00 - 18:00 WIB",
-      bgColor: "bg-blue-50",
-      iconColor: "text-blue-500"
-    }
+    // {
+    //   icon: <FaClock />,
+    //   title: "Business Hours",
+    //   value: "09:00 - 18:00 WIB",
+    //   bgColor: "bg-blue-50",
+    //   iconColor: "text-blue-500"
+    // }
   ];
 
   return (
@@ -74,6 +74,8 @@ export default function ContactUs() {
                 <motion.a 
                   key={info.title}
                   href={info.link}
+                  target={info.link.startsWith('http') ? "_blank" : undefined}
+                    rel={info.link.startsWith('http') ? "noopener noreferrer" : undefined}
                   className={`${info.bgColor} group p-6 rounded-2xl hover:shadow-lg transition-all duration-300`}
                   whileHover={{ y: -5, scale: 1.02 }}
                   initial={{ opacity: 0, y: 20 }}
@@ -100,7 +102,7 @@ export default function ContactUs() {
               viewport={{ once: true }}
             >
               <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3989.400230568598!2d104.60095407536909!3d0.8294679991624913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMMKwNDknNDYuMSJOIDEwNMKwMzYnMTIuNyJF!5e0!3m2!1sen!2sid!4v1741457215987!5m2!1sen!2sid"
+                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3989.049814495919!2d104.0081750749654!3d1.1245832988646438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMcKwMDcnMjguNSJOIDEwNMKwMDAnMzguNyJF!5e0!3m2!1sen!2sid!4v1741599857507!5m2!1sen!2sid"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
