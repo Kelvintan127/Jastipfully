@@ -1,37 +1,31 @@
 import { useState } from "react";
-import { FaCheckCircle, FaClock, FaBoxOpen, FaTruck, FaShieldAlt, FaChevronDown } from "react-icons/fa";
+import { FaHeadset, FaTag, FaStore, FaShieldAlt, FaChevronDown } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 const whyChooseUs = [
   {
-    title: "Fully Check Barang",
-    desc: "Kita melakukan fully check terhadap barang (hitung kuantiti dan cocokin size & warna). Ketika barang sampai dan segera komplen seller jika terjadi kesalahan.",
-    icon: <FaCheckCircle />,
+    title: "Layanan Konsultasi Gratis",
+    desc: "Kami siap membantu dan memberikan panduan terbaik untuk kebutuhan jastip Anda tanpa biaya tambahan.",
+    icon: <FaHeadset />,
   },
   {
-    title: "Aktif Setiap Hari",
-    desc: "Kita aktif setiap hari dan bersedia cross check ke seller jika ada pertanyaan",
-    icon: <FaClock />,
+    title: "Harga Terjangkau dan Kompetitif",
+    desc: "Dapatkan produk dan layanan dengan harga terbaik.",
+    icon: <FaTag />,
   },
   {
-    title: "Proses Cepat",
-    desc: "After payment segera diproses (bukan system PO)",
-    icon: <FaBoxOpen />,
+    title: "Dukungan Dropship & Reseller",
+    desc: "Jalankan bisnis dengan mudah tanpa perlu stok barang, kami mendukung sistem dropship dan reseller.",
+    icon: <FaStore />,
   },
   {
-    title: "Repacking & Kurir Online",
-    desc: "Melakukan repacking agar jastipers mudah ambil barang dan kita yang order kurir online (Gojek, Grab, Maxim)",
-    icon: <FaTruck />,
-  },
-  {
-    title: "Packing Kayu & Asuransi",
-    desc: "Menyediakan jasa packing kayu dan asuransi untuk produk fragile bagi customer luar kota",
+    title: "Bebas Biaya Handling Tersembunyi",
+    desc: "Nikmati layanan yang jujur dan transparan tanpa biaya tambahan yang tidak terduga.",
     icon: <FaShieldAlt />,
   },
 ];
 
 export default function WhyUs() {
-  const [expandedIndex, setExpandedIndex] = useState(null);
   const [hoveredIndex, setHoveredIndex] = useState(null);
 
   return (
@@ -109,38 +103,9 @@ export default function WhyUs() {
                 {title}
               </motion.h3>
 
-              <AnimatePresence mode="wait">
-                <motion.div
-                  initial={false}
-                  animate={{ 
-                    height: expandedIndex === index ? "auto" : "3rem",
-                    opacity: expandedIndex === index ? 1 : 0.7
-                  }}
-                  className="overflow-hidden"
-                >
-                  <p className="text-gray-600 leading-relaxed">
-                    {desc}
-                  </p>
-                </motion.div>
-              </AnimatePresence>
-
-              <motion.button
-                onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-                className="mt-6 text-orange-500 font-medium flex items-center gap-2 group"
-                whileHover={{ x: 8 }}
-              >
-                <span className="group-hover:text-orange-600 transition-colors">
-                  {expandedIndex === index ? "Show Less" : "Learn More"}
-                </span>
-                <motion.div
-                  animate={{ 
-                    rotate: expandedIndex === index ? 180 : 0,
-                  }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <FaChevronDown className="text-sm" />
-                </motion.div>
-              </motion.button>
+              <div className="text-gray-600 leading-relaxed">
+                {desc}
+              </div>
             </motion.div>
           ))}
         </div>

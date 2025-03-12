@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { FaShip, FaPlane } from 'react-icons/fa';
+import { FaShip, FaPlane, FaInfoCircle } from 'react-icons/fa';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 export default function ShippingRates() {
   const shippingRates = {
@@ -16,6 +18,22 @@ export default function ShippingRates() {
       { area: 'Kepulauan Riau', rate: '140.000/kg' },
     ]
   };
+
+  const seaTooltipContent = (
+    <div className="p-4 bg-white rounded-lg shadow-lg border border-blue-100">
+      <h4 className="font-bold mb-2 text-blue-600">Waktu Estimasi Pengiriman</h4>
+      <p className="mb-2 text-gray-700">Pengiriman Laut: 4-6 minggu</p>
+      <p className="text-sm text-gray-600">Estimasi bisa berubah jika ada kendala cuaca, redline, dan peak season.</p>
+    </div>
+  );
+
+  const airTooltipContent = (
+    <div className="p-4 bg-white rounded-lg shadow-lg border border-orange-100">
+      <h4 className="font-bold mb-2 text-orange-600">Waktu Estimasi Pengiriman</h4>
+      <p className="mb-2 text-gray-700">Pengiriman Udara: 10-16 hari kerja</p>
+      <p className="text-sm text-gray-600">Estimasi bisa berubah jika ada kendala cuaca, redline, dan peak season.</p>
+    </div>
+  );
 
   return (
     <div className="py-24 bg-gradient-to-br from-orange-50 via-white to-orange-50 w-full">
@@ -36,13 +54,13 @@ export default function ShippingRates() {
           <p className="text-gray-600">Pilihan pengiriman yang sesuai dengan kebutuhan Anda</p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
           {/* Sea Shipment */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl shadow-lg p-8 relative overflow-hidden group"
+            className="bg-white rounded-2xl shadow-lg p-10 relative overflow-hidden group"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity" />
             <div className="relative">
@@ -50,9 +68,13 @@ export default function ShippingRates() {
                 <div className="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center">
                   <FaShip className="text-2xl text-blue-600" />
                 </div>
-                <div>
+                <div className="flex items-center gap-2">
                   <h3 className="text-xl font-bold text-gray-800">Pengiriman Laut</h3>
-                  <p className="text-gray-500">Estimasi 4-5 minggu</p>
+                  <Tippy content={seaTooltipContent} interactive={true} placement="right">
+                    <button className="text-blue-600 hover:text-blue-700 transition-colors">
+                      <FaInfoCircle size={16} />
+                    </button>
+                  </Tippy>
                 </div>
               </div>
               
@@ -72,7 +94,7 @@ export default function ShippingRates() {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl shadow-lg p-8 relative overflow-hidden group"
+            className="bg-white rounded-2xl shadow-lg p-10 relative overflow-hidden group"
           >
             <div className="absolute inset-0 bg-gradient-to-br from-orange-500/5 to-orange-600/5 opacity-0 group-hover:opacity-100 transition-opacity" />
             <div className="relative">
@@ -80,9 +102,13 @@ export default function ShippingRates() {
                 <div className="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center">
                   <FaPlane className="text-2xl text-orange-600" />
                 </div>
-                <div>
+                <div className="flex items-center gap-2">
                   <h3 className="text-xl font-bold text-gray-800">Pengiriman Udara</h3>
-                  <p className="text-gray-500">Estimasi 2-3 minggu</p>
+                  <Tippy content={airTooltipContent} interactive={true} placement="right">
+                    <button className="text-orange-600 hover:text-orange-700 transition-colors">
+                      <FaInfoCircle size={16} />
+                    </button>
+                  </Tippy>
                 </div>
               </div>
               
@@ -97,17 +123,6 @@ export default function ShippingRates() {
             </div>
           </motion.div>
         </div>
-
-        <motion.div 
-          className="mt-8 text-center"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-gray-600 text-xl">
-            • Tersedia opsi tambahan: Packing kayu & Asuransi
-          </p>
-        </motion.div>
       </div>
     </div>
   );
