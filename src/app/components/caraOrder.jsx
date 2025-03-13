@@ -77,7 +77,7 @@ export default function CaraOrder() {
               ))}
             </div>
           </div>
-
+          
           {/* Second Row Timeline */}
           <div className="relative">
             <div className="absolute left-0 right-0 top-6 h-0.5 bg-gray-300"></div>
