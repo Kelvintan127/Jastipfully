@@ -20,7 +20,7 @@ export default function ShippingRates() {
 
   const seaTooltipContent = (
     <div className="p-4 bg-white rounded-lg shadow-lg border border-blue-100">
-      <h4 className="font-bold mb-2 text-blue-600">Waktu Estimasi Pengiriman</h4>
+      <h4 className="font-bold mb-2 text-blue-600">Estimasi Cina-Batam</h4>
       <p className="mb-2 text-gray-700">Pengiriman Laut: 4-6 minggu</p>
       <p className="text-sm text-gray-600">Estimasi bisa berubah jika ada kendala cuaca, redline, dan peak season.</p>
     </div>
@@ -28,7 +28,7 @@ export default function ShippingRates() {
 
   const airTooltipContent = (
     <div className="p-4 bg-white rounded-lg shadow-lg border border-orange-100">
-      <h4 className="font-bold mb-2 text-orange-600">Waktu Estimasi Pengiriman</h4>
+      <h4 className="font-bold mb-2 text-orange-600">Estimasi Cina-Batam</h4>
       <p className="mb-2 text-gray-700">Pengiriman Udara: 10-16 hari kerja</p>
       <p className="text-sm text-gray-600">Estimasi bisa berubah jika ada kendala cuaca, redline, dan peak season.</p>
     </div>
@@ -71,7 +71,7 @@ export default function ShippingRates() {
               whileHover={{ scale: 1.05 }}
               transition={{ type: "spring", stiffness: 300 }}
             >
-              Shipping Rates
+              Mulai Dari
             </motion.h2>
             <p className="text-gray-600">Pilihan pengiriman yang sesuai dengan kebutuhan Anda</p>
           </motion.div>
@@ -99,7 +99,7 @@ export default function ShippingRates() {
                         </button>
                       </Tooltip.Trigger>
                       <TooltipContent className="border-blue-100">
-                        <h4 className="font-bold mb-2 text-blue-600">Waktu Estimasi Pengiriman</h4>
+                        <h4 className="font-bold mb-2 text-blue-600">Estimasi Cina-Batam</h4>
                         <p className="mb-2 text-gray-700">Pengiriman Laut: 4-6 minggu</p>
                         <p className="text-sm text-gray-600">Estimasi bisa berubah jika ada kendala cuaca, redline, dan peak season.</p>
                       </TooltipContent>
@@ -140,7 +140,7 @@ export default function ShippingRates() {
                         </button>
                       </Tooltip.Trigger>
                       <TooltipContent className="border-orange-100">
-                        <h4 className="font-bold mb-2 text-orange-600">Waktu Estimasi Pengiriman</h4>
+                        <h4 className="font-bold mb-2 text-orange-600">Estimasi Cina-Batam</h4>
                         <p className="mb-2 text-gray-700">Pengiriman Udara: 10-16 hari kerja</p>
                         <p className="text-sm text-gray-600">Estimasi bisa berubah jika ada kendala cuaca, redline, dan peak season.</p>
                       </TooltipContent>

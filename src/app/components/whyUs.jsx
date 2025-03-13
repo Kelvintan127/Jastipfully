@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaHeadset, FaTag, FaStore, FaShieldAlt, FaChevronDown } from "react-icons/fa";
+import { FaHeadset, FaTag, FaStore, FaShieldAlt, FaTruck, FaBox } from "react-icons/fa";
 import { motion, AnimatePresence } from "framer-motion";
 
 const whyChooseUs = [
@@ -19,9 +19,14 @@ const whyChooseUs = [
     icon: <FaStore />,
   },
   {
-    title: "Bebas Biaya Handling Tersembunyi",
-    desc: "Nikmati layanan yang jujur dan transparan tanpa biaya tambahan yang tidak terduga.",
-    icon: <FaShieldAlt />,
+    title: "Pengiriman Fleksibel",
+    desc: "Opsi pengiriman via laut atau udara sesuai kebutuhan.",
+    icon: <FaTruck />,
+  },
+  {
+    title: "Ingin Pengiriman Aman?",
+    desc: "Tersedia Opsi tambahan packing kayu dan asuransi untuk barang fragile.",
+    icon: <FaBox />,
   },
 ];
 
@@ -113,3 +118,4 @@ export default function WhyUs() {
     </motion.div>
   );
 }
+

@@ -25,12 +25,9 @@ export default function Ketentuan() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent ">
-            Syarat & Ketentuan
-          </h2>
-          <p className="text-gray-600 text-sm">
-          Syarat dan ketentuan yang berlaku pada layanan kami untuk memastikan pengalaman berbelanja terbaik
-          </p>
+        <h2 className="text-2xl font-bold mb-2 bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent ">
+           Syarat & Ketentuan
+         </h2> 
         </motion.div>
 
         <div className="space-y-4">

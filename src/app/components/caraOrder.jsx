@@ -10,7 +10,7 @@ const orderSteps = [
     description: "Konfirmasi pesanan final kepada admin"
   },
   {
-    text: "Admin Kirim Rekapan",
+    text: "Admin Create Group dan Info Rekapan",
     description: "Admin akan mengirimkan rekapitulasi pesanan"
   },
   {
@@ -46,14 +46,14 @@ const orderSteps = [
 export default function CaraOrder() {
   return (
     <motion.div 
-      className="py-24 px-6 bg-white relative overflow-hidden rounded-3xl"
+      className="py-24 px-6 bg-white my-18 relative overflow-hidden rounded-3xl"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
     >
       <div className="max-w-7xl mx-auto relative">
         <div className="relative z-10">
-          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent">How It Works</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 bg-gradient-to-r from-orange-600 to-orange-400 bg-clip-text text-transparent">Prosedur Jasa Titip</h2>
           {/* First Row Timeline */}
           <div className="relative mb-32">
             <div className="absolute left-0 right-0 top-6 h-0.5 bg-gray-300"></div>

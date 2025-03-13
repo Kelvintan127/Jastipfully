@@ -32,9 +32,9 @@ export default function Banner() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ delay: 0.3 }}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-orange-600 to-orange-400 text-center"
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-4xl font-bold text-white bg-clip-text bg-gradient-to-r from-orange-400 via-orange-300 to-orange-200 drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)] text-center"
                 >
-                    Jasa Titip Impor Terpercaya dari China ke Indonesia!
+                    Jasa titip dan pengiriman Impor Terpercaya!
                 </motion.h2>
             </motion.div>
         </div>

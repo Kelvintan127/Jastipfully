@@ -25,7 +25,6 @@ export default function Home() {
         <Carousel />
         <AboutUs />
         <CaraOrder />
-        <Ketentuan />
         <ShippingRates />
         <WhyUs />
         <Testimony />
