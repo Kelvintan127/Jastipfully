@@ -32,6 +32,7 @@ export default function AboutUs() {
 
   return (
     <motion.div
+      id="about"
       className="flex flex-col items-center space-y-12 py-8 px-4 w-full max-w-6xl mx-auto"
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}

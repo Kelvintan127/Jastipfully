@@ -2,9 +2,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
 
 const navLinks = [
-  { href: "#", label: "Home" },
-  { href: "#", label: "About Us" },
-  { href: "#", label: "Contact" },
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "About Us" },
+  { href: "#contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -15,11 +15,29 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
+
+      // Get all sections
+      const sections = navLinks.map(link => document.querySelector(link.href));
+      
+      // Find the current section
+      const current = sections.find(section => {
+        if (!section) return false;
+        const rect = section.getBoundingClientRect();
+        return rect.top <= 100 && rect.bottom >= 100;
+      });
+
+      // Update active link based on current section
+      if (current) {
+        const currentLink = navLinks.find(link => link.href === `#${current.id}`);
+        if (currentLink && currentLink.label !== activeLink) {
+          setActiveLink(currentLink.label);
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [activeLink]);
 
   return (
     <motion.nav 

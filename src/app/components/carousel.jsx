@@ -15,7 +15,7 @@ export default function Banner() {
     }, []);
 
     return (
-        <div className="relative w-full h-[600px] overflow-hidden">
+        <div id="home" className="relative w-full h-[600px] overflow-hidden">
             <motion.div
                 className="absolute inset-0"
                 initial={{ opacity: 0, scale: 1.1 }}

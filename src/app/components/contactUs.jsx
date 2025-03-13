@@ -4,7 +4,13 @@ import { useState } from "react";
 
 export default function ContactUs() {
   const [focusedField, setFocusedField] = useState(null);
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [formData, setFormData] = useState({
+    name: '',
+    city: '',
+    district: '',
+    importCategory: 'sea',
+    quantity: ''
+  });
 
   const contactInfo = [
     {
@@ -41,7 +47,7 @@ export default function ContactUs() {
   ];
 
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-white to-orange-50 py-24 w-full">
+    <div id="contact" className="relative overflow-hidden bg-gradient-to-br from-orange-50 via-white to-orange-50 py-24 w-full">
       <motion.div 
         className="text-center mb-16"
         initial={{ opacity: 0, y: -20 }}
@@ -120,51 +126,89 @@ export default function ContactUs() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h3 className="text-2xl font-bold text-gray-800">Send Us a Message</h3>
-            <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-              {['name', 'email', 'message'].map((field) => (
-                <motion.div
-                  key={field}
-                  initial={false}
-                  animate={{ scale: focusedField === field ? 1.02 : 1 }}
-                  className="bg-white rounded-2xl p-6 shadow-sm"
-                >
-                  <label 
-                    htmlFor={field}
-                    className="block text-sm font-medium text-gray-600 mb-2"
-                  >
-                    {field.charAt(0).toUpperCase() + field.slice(1)}
-                  </label>
-                  {field === 'message' ? (
-                    <textarea
-                      id={field}
-                      value={formData[field]}
-                      onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
-                      onFocus={() => setFocusedField(field)}
-                      onBlur={() => setFocusedField(null)}
-                      rows="4"
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
-                      required
-                    />
-                  ) : (
+            <h3 className="text-2xl font-bold text-gray-800">Send us a Message</h3>
+            <form className="space-y-6">
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Nama</label>
+                <input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="city" className="block text-sm font-medium text-gray-700 mb-2">Asal dari Kota</label>
+                <input
+                  type="text"
+                  id="city"
+                  value={formData.city}
+                  onChange={(e) => setFormData({ ...formData, city: e.target.value })}
+                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="district" className="block text-sm font-medium text-gray-700 mb-2">Asal dari Kecamatan</label>
+                <input
+                  type="text"
+                  id="district"
+                  value={formData.district}
+                  onChange={(e) => setFormData({ ...formData, district: e.target.value })}
+                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg"
+                  required
+                />
+              </div>
+
+              <div>
+                <label htmlFor="importCategory" className="block text-sm font-medium text-gray-700 mb-2">Kategori Pengiriman</label>
+                <div className="grid grid-cols-2 gap-4">
+                  <label className="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-orange-50 transition-colors">
                     <input
-                      type={field === 'email' ? 'email' : 'text'}
-                      id={field}
-                      value={formData[field]}
-                      onChange={(e) => setFormData({ ...formData, [field]: e.target.value })}
-                      onFocus={() => setFocusedField(field)}
-                      onBlur={() => setFocusedField(null)}
-                      className="w-full px-4 py-3 rounded-xl border border-gray-200 focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
-                      required
+                      type="radio"
+                      name="importCategory"
+                      value="sea"
+                      checked={formData.importCategory === 'sea'}
+                      onChange={(e) => setFormData({ ...formData, importCategory: e.target.value })}
+                      className="h-4 w-4 text-orange-500 focus:ring-orange-500"
                     />
-                  )}
-                </motion.div>
-              ))}
+                    <span className="ml-2 text-lg text-gray-900">Sea Shipping</span>
+                  </label>
+                  <label className="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-orange-50 transition-colors">
+                    <input
+                      type="radio"
+                      name="importCategory"
+                      value="air"
+                      checked={formData.importCategory === 'air'}
+                      onChange={(e) => setFormData({ ...formData, importCategory: e.target.value })}
+                      className="h-4 w-4 text-orange-500 focus:ring-orange-500"
+                    />
+                    <span className="ml-2 text-lg text-gray-900">Air Shipping</span>
+                  </label>
+                </div>
+              </div>
+
+              <div>
+                <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-2">Rencana Kuantiti Impor (Berat/Kubikasi)</label>
+                <input
+                  type="text"
+                  id="quantity"
+                  value={formData.quantity}
+                  onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
+                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg"
+                  required
+                />
+              </div>
+
               <motion.button
-                type="submit"
-                className="w-full bg-gradient-to-r from-orange-500 to-orange-400 text-white font-medium px-8 py-4 rounded-xl hover:shadow-lg transition-all"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
+                className="w-full bg-gradient-to-r from-orange-600 to-orange-400 text-white py-3 px-6 rounded-lg font-semibold hover:from-orange-700 hover:to-orange-500 transition-all duration-300 shadow-md hover:shadow-lg"
+                type="submit"
               >
                 Send Message
               </motion.button>
