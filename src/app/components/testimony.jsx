@@ -51,7 +51,7 @@ export default function Testimony() {
   };
 
   return (
-    <div className="py-24 bg-gradient-to-br from-orange-50 via-white to-orange-50">
+    <div className="py-24 bg-gradient-to-br from-orange-50 via-white to-orange-50 w-full">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <motion.h2 
