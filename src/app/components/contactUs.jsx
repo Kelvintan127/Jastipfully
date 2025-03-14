@@ -12,6 +12,26 @@ export default function ContactUs() {
     quantity: ''
   });
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    
+    // Create email content
+    const emailSubject = `New Inquiry from ${formData.name}`;
+    const emailBody = `
+Name: ${formData.name}
+City: ${formData.city}
+District: ${formData.district}
+Shipping Category: ${formData.importCategory === 'sea' ? 'Sea Shipping' : 'Air Shipping'}
+Quantity: ${formData.quantity}
+    `.trim();
+
+    // Create mailto URL
+    const mailtoUrl = `mailto:jastipfully2020@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+
+    // Open email client
+    window.location.href = mailtoUrl;
+  };
+
   const contactInfo = [
     {
       icon: <FaWhatsapp />,
@@ -127,7 +147,7 @@ export default function ContactUs() {
             className="space-y-6"
           >
             <h3 className="text-2xl font-bold text-gray-800">Send us a Message</h3>
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Nama</label>
                 <input
@@ -135,7 +155,7 @@ export default function ContactUs() {
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg"
+                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg text-gray-600"
                   required
                 />
               </div>
@@ -147,7 +167,7 @@ export default function ContactUs() {
                   id="city"
                   value={formData.city}
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg"
+                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg text-gray-600"
                   required
                 />
               </div>
@@ -159,7 +179,7 @@ export default function ContactUs() {
                   id="district"
                   value={formData.district}
                   onChange={(e) => setFormData({ ...formData, district: e.target.value })}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg"
+                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg text-gray-600"
                   required
                 />
               </div>
@@ -199,7 +219,7 @@ export default function ContactUs() {
                   id="quantity"
                   value={formData.quantity}
                   onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
-                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg"
+                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg text-gray-600"
                   required
                 />
               </div>

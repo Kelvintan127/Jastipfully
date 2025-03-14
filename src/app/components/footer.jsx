@@ -1,7 +1,7 @@
 import { FaMapMarkerAlt, FaWhatsapp, FaEnvelope, FaFacebook, FaTwitter, FaInstagram, FaTiktok } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
+import { Link as ScrollLink } from 'react-scroll';
 
 export default function Footer() {
   const terms = [
@@ -20,9 +20,9 @@ export default function Footer() {
   ];
 
   const navigation = [
-    { name: 'Home', href: '#home' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', to: 'home' },
+    { name: 'About Us', to: 'about' },
+    { name: 'Contact', to: 'contact' },
   ];
 
   const contactInfo = [
@@ -124,12 +124,16 @@ export default function Footer() {
                     key={item.name}
                     whileHover={{ x: 5 }}
                   >
-                    <Link 
-                      href={item.href}
-                      className="text-gray-400 hover:text-orange-400 transition-colors block"
+                    <ScrollLink 
+                      to={item.to}
+                      spy={true}
+                      smooth={true}
+                      offset={-100}
+                      duration={500}
+                      className="text-gray-400 hover:text-orange-400 transition-colors block cursor-pointer"
                     >
                       {item.name}
-                    </Link>
+                    </ScrollLink>
                   </motion.div>
                 ))}
               </nav>

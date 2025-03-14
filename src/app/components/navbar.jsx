@@ -1,10 +1,11 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Link, Events, scrollSpy } from "react-scroll";
 
 const navLinks = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "About Us" },
-  { href: "#contact", label: "Contact" },
+  { to: "home", label: "Home" },
+  { to: "about", label: "About Us" },
+  { to: "contact", label: "Contact" },
 ];
 
 export default function Navbar() {
@@ -15,29 +16,20 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 0);
-
-      // Get all sections
-      const sections = navLinks.map(link => document.querySelector(link.href));
-      
-      // Find the current section
-      const current = sections.find(section => {
-        if (!section) return false;
-        const rect = section.getBoundingClientRect();
-        return rect.top <= 100 && rect.bottom >= 100;
-      });
-
-      // Update active link based on current section
-      if (current) {
-        const currentLink = navLinks.find(link => link.href === `#${current.id}`);
-        if (currentLink && currentLink.label !== activeLink) {
-          setActiveLink(currentLink.label);
-        }
-      }
     };
 
+    // Initialize scrollSpy
+    scrollSpy.update();
+    Events.scrollEvent.register('begin', () => {});
+    Events.scrollEvent.register('end', () => {});
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [activeLink]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      Events.scrollEvent.remove('begin');
+      Events.scrollEvent.remove('end');
+    };
+  }, []);
 
   return (
     <motion.nav 
@@ -67,27 +59,30 @@ export default function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex space-x-8">
-          {navLinks.map(({ href, label }) => (
-            <motion.a
-              key={label}
-              href={href}
-              className={`relative px-2 py-1 text-lg font-medium transition-colors
-                ${isScrolled
-                  ? (activeLink === label ? 'text-orange-600' : 'text-gray-600 hover:text-orange-500')
-                  : (activeLink === label ? 'text-orange-300' : 'text-white hover:text-orange-200')}`}
-              onClick={() => setActiveLink(label)}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              {label}
-              {activeLink === label && (
-                <motion.div
-                  className={`absolute bottom-0 left-0 right-0 h-0.5 ${isScrolled ? 'bg-orange-500' : 'bg-orange-300'}`}
-                  layoutId="underline"
-                  initial={false}
-                />
-              )}
-            </motion.a>
+          {navLinks.map(({ to, label }) => (
+            <motion.div key={label} className="relative">
+              <Link
+                to={to}
+                spy={true}
+                smooth={true}
+                offset={-100}
+                duration={500}
+                onSetActive={() => setActiveLink(label)}
+                className={`relative px-2 py-1 text-lg font-medium transition-colors cursor-pointer
+                  ${isScrolled
+                    ? (activeLink === label ? 'text-orange-600' : 'text-gray-600 hover:text-orange-500')
+                    : (activeLink === label ? 'text-orange-300' : 'text-white hover:text-orange-200')}`}
+              >
+                {label}
+                {activeLink === label && (
+                  <motion.div
+                    className={`absolute bottom-0 left-0 right-0 h-0.5 ${isScrolled ? 'bg-orange-500' : 'bg-orange-300'}`}
+                    layoutId="underline"
+                    initial={false}
+                  />
+                )}
+              </Link>
+            </motion.div>
           ))}
         </div>
 
@@ -123,22 +118,25 @@ export default function Navbar() {
             className={`md:hidden border-t ${isScrolled ? 'border-gray-200 bg-white/80' : 'border-gray-200/20 bg-black/40'}`}
           >
             <div className="px-6 py-4 space-y-3">
-              {navLinks.map(({ href, label }) => (
-                <motion.a
+              {navLinks.map(({ to, label }) => (
+                <Link
                   key={label}
-                  href={href}
-                  className={`block px-2 py-2 text-lg font-medium rounded-lg transition-colors
-                    ${isScrolled
-                      ? (activeLink === label ? 'text-orange-600 bg-orange-50' : 'text-gray-600 hover:bg-gray-50')
-                      : (activeLink === label ? 'text-orange-300 bg-white/10' : 'text-white hover:bg-white/5')}`}
+                  to={to}
+                  spy={true}
+                  smooth={true}
+                  offset={-100}
+                  duration={500}
                   onClick={() => {
                     setActiveLink(label);
                     setIsOpen(false);
                   }}
-                  whileTap={{ scale: 0.98 }}
+                  className={`block px-2 py-2 text-lg font-medium rounded-lg transition-colors cursor-pointer
+                    ${isScrolled
+                      ? (activeLink === label ? 'text-orange-600 bg-orange-50' : 'text-gray-600 hover:bg-gray-50')
+                      : (activeLink === label ? 'text-orange-300 bg-white/10' : 'text-white hover:bg-white/5')}`}
                 >
                   {label}
-                </motion.a>
+                </Link>
               ))}
             </div>
           </motion.div>
