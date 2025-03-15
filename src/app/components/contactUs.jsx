@@ -166,10 +166,22 @@ export default function ContactUs() {
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Nama</label>
                 <input
                   type="text"
-                  name="user_name"
+                  name="name"
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg text-gray-600"
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg text-gray-600"
                   required
                 />
@@ -180,6 +192,7 @@ export default function ContactUs() {
                 <input
                   type="text"
                   id="city"
+                  name="city"
                   value={formData.city}
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                   className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg text-gray-600"
@@ -192,6 +205,7 @@ export default function ContactUs() {
                 <input
                   type="text"
                   id="district"
+                  name="district"
                   value={formData.district}
                   onChange={(e) => setFormData({ ...formData, district: e.target.value })}
                   className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg text-gray-600"
@@ -205,7 +219,8 @@ export default function ContactUs() {
                   <label className="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-orange-50 transition-colors">
                     <input
                       type="radio"
-                      name="importCategory"
+                      name="shipping_category"
+                      id="shipping_category"
                       value="sea"
                       checked={formData.importCategory === 'sea'}
                       onChange={(e) => setFormData({ ...formData, importCategory: e.target.value })}
@@ -216,7 +231,8 @@ export default function ContactUs() {
                   <label className="flex items-center p-4 border rounded-lg cursor-pointer hover:bg-orange-50 transition-colors">
                     <input
                       type="radio"
-                      name="importCategory"
+                      name="shipping_category"
+                      id="shipping_category"
                       value="air"
                       checked={formData.importCategory === 'air'}
                       onChange={(e) => setFormData({ ...formData, importCategory: e.target.value })}
@@ -232,6 +248,7 @@ export default function ContactUs() {
                 <input
                   type="text"
                   id="quantity"
+                  name="quantity"
                   value={formData.quantity}
                   onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
                   className="mt-1 block w-full rounded-lg border-gray-300 shadow-sm focus:border-orange-500 focus:ring-orange-500 py-3 px-4 text-lg text-gray-600"
