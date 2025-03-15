@@ -25,7 +25,7 @@ export default function Banner() {
                 <motion.img
                     src="/assets/banner1.jpg"
                     alt="Jastipfully Banner"
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover overflow-hidden"
                 />
                 <div className={`absolute inset-0 bg-gradient-to-b from-black/30 to-black/60 transition-opacity duration-300 ${isScrolled ? 'opacity-0' : 'opacity-100'}`} />
                 <motion.h2

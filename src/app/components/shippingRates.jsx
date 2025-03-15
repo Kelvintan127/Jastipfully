@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaShip, FaPlane, FaInfoCircle } from 'react-icons/fa';
 import * as Tooltip from '@radix-ui/react-tooltip';
+import { useState } from 'react';
 
 export default function ShippingRates() {
   const shippingRates = {
@@ -56,9 +57,11 @@ export default function ShippingRates() {
     </Tooltip.Portal>
   );
 
+  const [openTooltip, setOpenTooltip] = useState('');
+  
   return (
     <div className="py-24 bg-gradient-to-br from-orange-50 via-white to-orange-50 w-full">
-      <Tooltip.Provider delayDuration={200}>
+      <Tooltip.Provider delayDuration={0}>
         <div className="max-w-7xl mx-auto px-6">
           <motion.div 
             className="text-center mb-16"
@@ -92,9 +95,15 @@ export default function ShippingRates() {
                   </div>
                   <div className="flex items-center gap-2">
                     <h3 className="text-xl font-bold text-gray-800">Pengiriman Laut</h3>
-                    <Tooltip.Root>
+                    <Tooltip.Root 
+                      open={openTooltip === 'sea'}
+                      onOpenChange={(open) => setOpenTooltip(open ? 'sea' : '')}
+                    >
                       <Tooltip.Trigger asChild>
-                        <button className="text-blue-600 hover:text-blue-700 transition-colors">
+                        <button 
+                          className="text-blue-600 hover:text-blue-700 transition-colors p-2"
+                          onClick={() => setOpenTooltip(openTooltip === 'sea' ? '' : 'sea')}
+                        >
                           <FaInfoCircle size={16} />
                         </button>
                       </Tooltip.Trigger>
@@ -133,9 +142,15 @@ export default function ShippingRates() {
                   </div>
                   <div className="flex items-center gap-2">
                     <h3 className="text-xl font-bold text-gray-800">Pengiriman Udara</h3>
-                    <Tooltip.Root>
+                    <Tooltip.Root 
+                      open={openTooltip === 'air'}
+                      onOpenChange={(open) => setOpenTooltip(open ? 'air' : '')}
+                    >
                       <Tooltip.Trigger asChild>
-                        <button className="text-orange-600 hover:text-orange-700 transition-colors">
+                        <button 
+                          className="text-orange-600 hover:text-orange-700 transition-colors p-2"
+                          onClick={() => setOpenTooltip(openTooltip === 'air' ? '' : 'air')}
+                        >
                           <FaInfoCircle size={16} />
                         </button>
                       </Tooltip.Trigger>

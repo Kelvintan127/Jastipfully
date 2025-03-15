@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tailwindcss/postcss": "^4",
+    "tailwindcss": "^4",
     "@emailjs/browser": "^4.4.1",
     "@radix-ui/react-tooltip": "^1.1.8",
     "flagpack-core": "^2.0.0",
@@ -22,7 +24,6 @@
     "react-scroll": "^1.9.3"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4"
+    
   }
 }
