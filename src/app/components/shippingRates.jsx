@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { FaShip, FaPlane, FaInfoCircle } from 'react-icons/fa';
 import * as Tooltip from '@radix-ui/react-tooltip';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ShippingRates() {
   const shippingRates = {
@@ -59,6 +59,48 @@ export default function ShippingRates() {
 
   const [openTooltip, setOpenTooltip] = useState('');
   
+  // Close tooltip when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (!event.target.closest('[data-tooltip-trigger]')) {
+        setOpenTooltip('');
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, []);
+
+  const TooltipTrigger = ({ type, children }) => (
+    <Tooltip.Root 
+      open={openTooltip === type}
+    >
+      <Tooltip.Trigger asChild>
+        <button 
+          data-tooltip-trigger
+          className={`text-${type === 'sea' ? 'blue' : 'orange'}-600 hover:text-${type === 'sea' ? 'blue' : 'orange'}-700 transition-colors p-2`}
+          onClick={(e) => {
+            e.stopPropagation();
+            setOpenTooltip(openTooltip === type ? '' : type);
+          }}
+        >
+          {children}
+        </button>
+      </Tooltip.Trigger>
+      <TooltipContent className={`border-${type === 'sea' ? 'blue' : 'orange'}-100`}>
+        <h4 className={`font-bold mb-2 text-${type === 'sea' ? 'blue' : 'orange'}-600`}>
+          Estimasi Cina-Batam
+        </h4>
+        <p className="mb-2 text-gray-700">
+          {type === 'sea' ? 'Pengiriman Laut: 4-6 minggu' : 'Pengiriman Udara: 10-16 hari kerja'}
+        </p>
+        <p className="text-sm text-gray-600">
+          Estimasi bisa berubah jika ada kendala cuaca, redline, dan peak season.
+        </p>
+      </TooltipContent>
+    </Tooltip.Root>
+  );
+
   return (
     <div className="py-24 bg-gradient-to-br from-orange-50 via-white to-orange-50 w-full">
       <Tooltip.Provider delayDuration={0}>
@@ -95,24 +137,9 @@ export default function ShippingRates() {
                   </div>
                   <div className="flex items-center gap-2">
                     <h3 className="text-xl font-bold text-gray-800">Pengiriman Laut</h3>
-                    <Tooltip.Root 
-                      open={openTooltip === 'sea'}
-                      onOpenChange={(open) => setOpenTooltip(open ? 'sea' : '')}
-                    >
-                      <Tooltip.Trigger asChild>
-                        <button 
-                          className="text-blue-600 hover:text-blue-700 transition-colors p-2"
-                          onClick={() => setOpenTooltip(openTooltip === 'sea' ? '' : 'sea')}
-                        >
-                          <FaInfoCircle size={16} />
-                        </button>
-                      </Tooltip.Trigger>
-                      <TooltipContent className="border-blue-100">
-                        <h4 className="font-bold mb-2 text-blue-600">Estimasi Cina-Batam</h4>
-                        <p className="mb-2 text-gray-700">Pengiriman Laut: 4-6 minggu</p>
-                        <p className="text-sm text-gray-600">Estimasi bisa berubah jika ada kendala cuaca, redline, dan peak season.</p>
-                      </TooltipContent>
-                    </Tooltip.Root>
+                    <TooltipTrigger type="sea">
+                      <FaInfoCircle size={16} />
+                    </TooltipTrigger>
                   </div>
                 </div>
                 
@@ -142,24 +169,9 @@ export default function ShippingRates() {
                   </div>
                   <div className="flex items-center gap-2">
                     <h3 className="text-xl font-bold text-gray-800">Pengiriman Udara</h3>
-                    <Tooltip.Root 
-                      open={openTooltip === 'air'}
-                      onOpenChange={(open) => setOpenTooltip(open ? 'air' : '')}
-                    >
-                      <Tooltip.Trigger asChild>
-                        <button 
-                          className="text-orange-600 hover:text-orange-700 transition-colors p-2"
-                          onClick={() => setOpenTooltip(openTooltip === 'air' ? '' : 'air')}
-                        >
-                          <FaInfoCircle size={16} />
-                        </button>
-                      </Tooltip.Trigger>
-                      <TooltipContent className="border-orange-100">
-                        <h4 className="font-bold mb-2 text-orange-600">Estimasi Cina-Batam</h4>
-                        <p className="mb-2 text-gray-700">Pengiriman Udara: 10-16 hari kerja</p>
-                        <p className="text-sm text-gray-600">Estimasi bisa berubah jika ada kendala cuaca, redline, dan peak season.</p>
-                      </TooltipContent>
-                    </Tooltip.Root>
+                    <TooltipTrigger type="air">
+                      <FaInfoCircle size={16} />
+                    </TooltipTrigger>
                   </div>
                 </div>
                 

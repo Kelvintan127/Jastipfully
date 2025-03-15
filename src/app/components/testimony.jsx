@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 const portraits = [
@@ -16,11 +16,30 @@ const ITEMS_PER_PAGE = 3;
 export default function Testimony() {
   const [currentPage, setCurrentPage] = useState(0);
   const [direction, setDirection] = useState(0);
-  const totalPages = Math.ceil(portraits.length / ITEMS_PER_PAGE);
+  // Modify ITEMS_PER_PAGE based on window width
+  const [itemsPerPage, setItemsPerPage] = useState(ITEMS_PER_PAGE);
+  
+  useEffect(() => {
+    const handleResize = () => {
+      setItemsPerPage(window.innerWidth < 768 ? 1 : 3);
+    };
+    
+    // Set initial value
+    handleResize();
+    
+    // Add event listener
+    window.addEventListener('resize', handleResize);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Update totalPages and currentImages calculations
+  const totalPages = Math.ceil(portraits.length / itemsPerPage);
   
   const currentImages = portraits.slice(
-    currentPage * ITEMS_PER_PAGE,
-    (currentPage + 1) * ITEMS_PER_PAGE
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage
   );
 
   const nextPage = () => {
