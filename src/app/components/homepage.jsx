@@ -42,6 +42,7 @@ export default function HomePage() {
     return () => clearInterval(interval);
   }, []);
 
+  
   const tabContent = {
     tentangKami:
       "Jastipfully adalah tempat jasa titip beli barang dari Taobao yang berdiri sejak 13 November 2020.",
