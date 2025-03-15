@@ -1,9 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { FaEnvelope, FaWhatsapp, FaMapMarkerAlt, FaClock } from "react-icons/fa";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from '@emailjs/browser';
 
 export default function ContactUs() {
   const [focusedField, setFocusedField] = useState(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const form = useRef();
   const [formData, setFormData] = useState({
     name: '',
     city: '',
@@ -12,24 +15,35 @@ export default function ContactUs() {
     quantity: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Create email content
-    const emailSubject = `New Inquiry from ${formData.name}`;
-    const emailBody = `
-Name: ${formData.name}
-City: ${formData.city}
-District: ${formData.district}
-Shipping Category: ${formData.importCategory === 'sea' ? 'Sea Shipping' : 'Air Shipping'}
-Quantity: ${formData.quantity}
-    `.trim();
+    setIsSubmitting(true);
 
-    // Create mailto URL
-    const mailtoUrl = `mailto:jastipfully2020@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+    try {
+      const result = await emailjs.sendForm(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        form.current,
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
+      );
 
-    // Open email client
-    window.location.href = mailtoUrl;
+      if (result.text === 'OK') {
+        alert('Message sent successfully!');
+        // Reset form
+        setFormData({
+          name: '',
+          city: '',
+          district: '',
+          importCategory: 'sea',
+          quantity: ''
+        });
+      }
+    } catch (error) {
+      console.error('Failed to send email:', error);
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -147,11 +161,12 @@ Quantity: ${formData.quantity}
             className="space-y-6"
           >
             <h3 className="text-2xl font-bold text-gray-800">Send us a Message</h3>
-            <form className="space-y-6" onSubmit={handleSubmit}>
+            <form ref={form} className="space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Nama</label>
                 <input
                   type="text"
+                  name="user_name"
                   id="name"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -227,10 +242,11 @@ Quantity: ${formData.quantity}
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
-                className="w-full bg-gradient-to-r from-orange-600 to-orange-400 text-white py-3 px-6 rounded-lg font-semibold hover:from-orange-700 hover:to-orange-500 transition-all duration-300 shadow-md hover:shadow-lg"
+                className="w-full bg-gradient-to-r from-orange-600 to-orange-400 text-white py-3 px-6 rounded-lg font-semibold hover:from-orange-700 hover:to-orange-500 transition-all duration-300 shadow-md hover:shadow-lg disabled:opacity-50"
                 type="submit"
+                disabled={isSubmitting}
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </motion.button>
             </form>
           </motion.div>
