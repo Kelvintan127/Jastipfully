@@ -69,8 +69,8 @@ export default function Footer() {
             <div className="space-y-6">
               {terms.map((item, index) => (
                 <div key={index} className="space-y-2">
-                  <h3 className="text-gray-300 font-medium">{item.title}</h3>
-                  <p className="text-gray-400 text-sm">{item.desc}</p>
+                  <h3 className="text-gray-300 font-medium text-sm">{item.title}</h3>
+                  <p className="text-gray-400" style={{fontSize: "10px"}}>{item.desc}</p>
                 </div>
               ))}
             </div>
